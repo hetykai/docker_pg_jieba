@@ -5,8 +5,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.cloud.tencent.com/' /etc/apk/reposi
 RUN set -ex \
   && apk add --no-cache --virtual .fetch-deps ca-certificates cmake git openssl tar \
   && git clone https://github.com/jaiminpan/pg_jieba \
-	&& apk add --no-cache --virtual .build-deps gcc g++ libc-dev make postgresql-dev \
-	&& apk add --no-cache --virtual .rundeps libstdc++ \
+  && apk add --no-cache --virtual .build-deps gcc g++ libc-dev make postgresql-dev \
+  && apk add --no-cache --virtual .rundeps libstdc++ \
   && cd /pg_jieba \
   && git submodule update --init --recursive \
   && mkdir build \
@@ -23,6 +23,6 @@ RUN set -ex \
 # RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 #   && echo "Asia/Shanghai" >  /etc/timezone
   && apk del .build-deps .fetch-deps \
-	&& rm -rf /usr/src/postgresql /pg_jieba \
-	&& find /usr/local -name '*.a' -delete
+  && rm -rf /usr/src/postgresql /pg_jieba \
+  && find /usr/local -name '*.a' -delete
   
